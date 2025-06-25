@@ -25,6 +25,8 @@ jobs:
           python update_readme_count.py
 
       - name: 📤 Commit & Push changes
+        env:
+          PAT: ${{ secrets.PAT }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -33,5 +35,5 @@ jobs:
             echo "✅ No changes to commit"
           else
             git commit -m "🔁 Auto-update problem count"
-            git push "https://x-access-token:${{ secrets.PAT }}@github.com/M-Hasaam/Leetcode-Solutions.git" HEAD:main
+            git push "https://x-access-token:${PAT}@github.com/M-Hasaam/Leetcode-Solutions.git" HEAD:main
           fi
