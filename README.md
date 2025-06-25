@@ -1,4 +1,4 @@
-# 💡 Leetcode-Solutions
+ # 💡 Leetcode-Solutions
 
 🚀 My personal journey solving LeetCode and mastering Data Structures & Algorithms.  
 📚 Synced automatically using the [LeetSync](https://github.com/leetsync/leetsync) extension.
