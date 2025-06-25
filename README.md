@@ -12,11 +12,10 @@
 ![Repo Size](https://img.shields.io/github/repo-size/M-Hasaam/Leetcode-Solutions)
 ![Files](https://img.shields.io/github/directory-file-count/M-Hasaam/Leetcode-Solutions?label=Files)
 
----
+
 <!-- PROBLEM_COUNT_START -->
 <!-- Will be replaced by script -->
 <!-- PROBLEM_COUNT_END -->
----
 ---
 
 ### 🌐 LeetCode Profile
