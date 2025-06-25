@@ -33,5 +33,5 @@ jobs:
             echo "✅ No changes to commit"
           else
             git commit -m "🔁 Auto-update problem count"
-            git push https://x-access-token:${{ secrets.PAT }}@github.com/${{ github.repository }} HEAD:main
+            git push https://x-access-token:${{ secrets.PAT }}@github.com/M-Hasaam/Leetcode-Solutions.git HEAD:main
           fi
