@@ -9,26 +9,31 @@ on:
 jobs:
   update-count:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Code
+      - name: 📦 Checkout Code
         uses: actions/checkout@v3
 
-      - name: Set up Python
+      - name: 🐍 Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.x
 
-      - name: Run Script
+      - name: ▶️ Run Update Script
         run: |
           pip install --upgrade pip
           python update_readme_count.py
 
-      - name: Commit & Push changes
+      - name: 📤 Commit & Push changes
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add README.md
-          git commit -m "🔁 Auto-update problem count"
-          git push
+          if git diff --cached --quiet; then
+            echo "✅ No changes to commit"
+          else
+            git commit -m "🔁 Auto-update problem count"
+            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:main
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
