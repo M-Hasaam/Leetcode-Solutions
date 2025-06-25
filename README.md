@@ -14,11 +14,18 @@
 
 ---
 
+## 🌐 LeetCode Profile
+
+[![LeetCode Profile](https://img.shields.io/badge/LeetCode-M_HASAAM-orange?logo=leetcode&logoColor=white)](https://leetcode.com/u/M_HASAAM/)
+
 ## 🧮 LeetCode Problem Count
 
 <!-- PROBLEM_COUNT_START -->
 <!-- Will be replaced by script -->
 <!-- PROBLEM_COUNT_END -->
+
+<img src="https://leetcard.jacoblin.cool/M_HASAAM?theme=dark&font=Baloo+Bhai&ext=contest" alt="LeetCode Stats" />
+
 
 ---
 
