@@ -1,39 +1,44 @@
- # 💡 Leetcode-Solutions
+# 💡 LeetCode Solutions
 
-🚀 My personal journey solving LeetCode and mastering Data Structures & Algorithms.  
-📚 Synced automatically using the [LeetSync](https://github.com/leetsync/leetsync) extension.
+🚀 Welcome to my journey of mastering **Data Structures & Algorithms** through solving [LeetCode](https://leetcode.com) problems.  
+🧩 This repository is synced automatically using the [LeetSync](https://github.com/leetsync/leetsync) extension.
 
 ---
 
-### 📊 Repository Stats
+## 📊 Repository Stats
 
 ![Last Commit](https://img.shields.io/github/last-commit/M-Hasaam/Leetcode-Solutions)
-![Language](https://img.shields.io/github/languages/top/M-Hasaam/Leetcode-Solutions)
+![Top Language](https://img.shields.io/github/languages/top/M-Hasaam/Leetcode-Solutions)
 ![Repo Size](https://img.shields.io/github/repo-size/M-Hasaam/Leetcode-Solutions)
-![Files](https://img.shields.io/github/directory-file-count/M-Hasaam/Leetcode-Solutions?label=Files)
+![File Count](https://img.shields.io/github/directory-file-count/M-Hasaam/Leetcode-Solutions?label=Files)
 
+---
+
+## 🧮 LeetCode Problem Count
 
 <!-- PROBLEM_COUNT_START -->
 <!-- Will be replaced by script -->
 <!-- PROBLEM_COUNT_END -->
----
-
-### 🌐 LeetCode Profile
-
-[Visit My LeetCode Profile](https://github.com/M-Hasaam)
 
 ---
 
-### 📌 About This Repository
+## 🌐 My LeetCode Profile
 
-- ✅ Solutions to LeetCode problems categorized by topic and difficulty.
-- 🧠 Focused on Data Structures, Algorithms, and Coding Interview Prep.
-- ✍️ Written primarily in C++ (unless otherwise stated).
-- 📦 Automatically updated using [LeetSync](https://github.com/leetsync/leetsync).
-
+🔗 [Visit My LeetCode Profile](https://leetcode.com/M-Hasaam)
 
 ---
 
-### 🔥 Contribution Graph
+## 📌 About This Repository
+
+- ✅ Includes LeetCode problems with cleanly written, well-commented solutions.
+- ✨ Each problem includes its own folder with a `.cpp` file and problem description.
+- 🧠 Focused on **DSA**, **coding interviews**, and **algorithmic thinking**.
+- 💻 Written in **C++** (unless stated otherwise).
+- 🔄 Auto-synced using [LeetSync](https://github.com/leetsync/leetsync).
+- ⚙️ Problem count in this README auto-updates using a custom GitHub Action.
+
+---
+
+## 🔥 Contribution Graph
 
 ![GitHub Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=M-Hasaam&theme=react-dark&area=true)
