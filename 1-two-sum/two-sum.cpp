@@ -6,10 +6,11 @@ public:
         int n = nums.size();
 
         for (int i = 0; i < n; i++) {
-            if (M.count(target - nums[i])) {
-                return {M[target - nums[i]], i};
+            int first = nums[i], second =target - first;
+            if (M.count(second)) {
+                return {M[second], i};
             }
-            M[nums[i]] = i;
+            M[first] = i;
         }
 
         return {0, 0};
