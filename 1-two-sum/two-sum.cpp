@@ -6,7 +6,7 @@ public:
         int n = nums.size();
 
         for (int i = 0; i < n; i++) {
-            int first = nums[i], second =target - first;
+            int first = nums[i], second = target - first;
             if (M.count(second)) {
                 return {M[second], i};
             }
