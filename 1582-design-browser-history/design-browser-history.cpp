@@ -21,12 +21,12 @@ public:
     void visit(string url) {
         Node* next = curr->next;
 
-        // while (next) {
-        //     Node* del = next;
-        //     next = next->next;
+        while (next) {
+            Node* del = next;
+            next = next->next;
 
-        //     delete del;
-        // }
+            delete del;
+        }
 
         curr->next = new Node(url);
         curr->next->back = curr;
