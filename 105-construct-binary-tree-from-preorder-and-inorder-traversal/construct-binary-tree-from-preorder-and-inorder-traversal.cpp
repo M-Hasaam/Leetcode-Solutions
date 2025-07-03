@@ -15,7 +15,7 @@ public:
     unordered_map<int, int> M;
     int pre_idx = 0;
 
-    TreeNode* rec(vector<int>& preorder, vector<int>& inorder,int left,int right) {
+    TreeNode* rec(vector<int>& preorder,int left,int right) {
         if (left > right)
             return nullptr;
 
@@ -24,8 +24,8 @@ public:
 
         TreeNode* root = new TreeNode(val);
 
-        root->left = rec(preorder,inorder,left,in_idx-1);
-        root->right = rec(preorder,inorder,in_idx+1,right);
+        root->left = rec(preorder,left,in_idx-1);
+        root->right = rec(preorder,in_idx+1,right);
 
         return root;
     }
@@ -36,6 +36,6 @@ public:
             M[inorder[i]] = i;
         }
 
-        return rec(preorder,inorder,0,inorder.size()-1);
+        return rec(preorder,0,inorder.size()-1);
     }
 };
