@@ -65,38 +65,65 @@
 //     bool hasNext() { return !end; }
 // };
 
-class BSTIterator {
+// class BSTIterator {
 
+//     stack<TreeNode*> S;
+
+//     void move_left() {
+//         while (S.top()->left) {
+//             S.push(S.top()->left);
+//         }
+//     }
+
+// public:
+//     BSTIterator(TreeNode* root) {
+
+//         S.push(root);
+//         move_left();
+//     }
+
+//     int next() {
+//         int ans = S.top()->val;
+//         TreeNode * node = S.top();
+
+//         S.pop();
+
+//         if (node->right) {
+//             S.push(node->right);
+//             move_left();
+//         }
+
+//         return ans;
+//     }
+
+//     bool hasNext() { return !S.empty(); }
+// };
+
+class BSTIterator {
     stack<TreeNode*> S;
 
-    void move_left() {
-        while (S.top()->left) {
-            S.push(S.top()->left);
+    void move_left(TreeNode* node) {
+        while (node) {
+            S.push(node);
+            node = node->left;
         }
     }
 
 public:
     BSTIterator(TreeNode* root) {
-
-        S.push(root);
-        move_left();
+        move_left(root);
     }
 
     int next() {
-        int ans = S.top()->val;
-        TreeNode * node = S.top();
-
-        S.pop();
-
-        if (node->right) {
-            S.push(node->right);
-            move_left();
-        }
-
-        return ans;
+        TreeNode* node = S.top(); S.pop();
+        if (node->right)
+            move_left(node->right);
+        return node->val;
     }
 
-    bool hasNext() { return !S.empty(); }
+    bool hasNext() {
+        return !S.empty();
+    }
 };
 
 /**
