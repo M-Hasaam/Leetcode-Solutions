@@ -14,7 +14,7 @@ public:
 
                 queue<int> q;
 
-                q.push(i); // BFS
+                q.push(i); //  BFS
 
                 color[i] = 0; // initial color is 0
 
