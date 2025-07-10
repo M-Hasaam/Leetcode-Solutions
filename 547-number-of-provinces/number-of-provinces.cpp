@@ -22,11 +22,10 @@ public:
                     int node = q.front();
                     q.pop();
 
-                    visited[node] = true;
-
                     for (int j = 0; j < n; j++) {
                         if (!visited[j] && isConnected[node][j]) {
                             q.push(j);
+                            visited[j] = true;
                         }
                     }
                 }
