@@ -25,9 +25,8 @@ public:
                     visited[node] = true;
 
                     for (int j = 0; j < n; j++) {
-                        if (j != i && !visited[j]) {
-                            if (isConnected[node][j])
-                                q.push(j);
+                        if (!visited[j] && isConnected[node][j]) {
+                            q.push(j);
                         }
                     }
                 }
