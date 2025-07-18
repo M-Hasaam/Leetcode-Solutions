@@ -18,42 +18,77 @@ public:
 };
 */
 
+// 7 ms 
+// class Solution {
+// public:
+//     vector<vector<int>> levelOrder(Node* root) {
+
+//         if (!root)
+//             return {};
+
+//         queue<Node*> Q;
+//         Q.push(root);
+
+//         vector<vector<int>> answer;
+
+//         while (!Q.empty()) {
+
+//             queue<Node*> q;
+//             swap(Q, q);
+
+//             vector<int> ans;
+
+//             while (!q.empty()) {
+
+//                 Node* node = q.front();
+//                 q.pop();
+
+//                 if (node) {
+
+//                     ans.push_back(node->val);
+
+//                     for (Node* child : node->children)
+//                         Q.push(child);
+//                 }
+//             }
+
+//             answer.push_back(ans);
+//         }
+
+//         return answer;
+//     }
+// };
+
 class Solution {
 public:
     vector<vector<int>> levelOrder(Node* root) {
-
         if (!root)
             return {};
 
-        queue<Node*> Q;
-        Q.push(root);
+        queue<Node*> q;
+        q.push(root);
 
-        vector<vector<int>> answer;
+        vector<vector<int>> result;
 
-        while (!Q.empty()) {
+        while (!q.empty()) {
+            int levelSize = q.size();
+            vector<int> level;
 
-            queue<Node*> q;
-            swap(Q, q);
-
-            vector<int> ans;
-
-            while (!q.empty()) {
-
+            for (int i = 0; i < levelSize; ++i) {
                 Node* node = q.front();
                 q.pop();
 
-                if (node) {
+                level.push_back(node->val);
 
-                    ans.push_back(node->val);
-
-                    for (Node* child : node->children)
-                        Q.push(child);
+                for (Node* child : node->children) {
+                    if (child)
+                        q.push(child);
                 }
             }
 
-            answer.push_back(ans);
+            result.push_back(level);
         }
 
-        return answer;
+        return result;
     }
 };
