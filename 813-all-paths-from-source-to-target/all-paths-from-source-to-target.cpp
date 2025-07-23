@@ -6,7 +6,7 @@ public:
         pre_path.push_back(I);
 
         if (I == N_1) {
-            answer.push_back(pre_path);
+            answer.emplace_back(pre_path);
         }
 
         for (int next : graph[I]) {
