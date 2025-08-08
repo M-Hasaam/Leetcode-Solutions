@@ -1,4 +1,4 @@
-class Solution {
+class Solution_2 {
 public:
     // using Quick Select
     int findKthLargest(vector<int>& nums, int k) {
@@ -45,5 +45,21 @@ private:
         swap(nums[i], nums[right]);
 
         return i;
+    }
+};
+
+// using  Min Heap
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        priority_queue<int, vector<int>, greater<int>> minHeap;
+
+        for (int num : nums) {
+            minHeap.push(num);
+            if (minHeap.size() > k) {
+                minHeap.pop();
+            }
+        }
+        return minHeap.top();
     }
 };
