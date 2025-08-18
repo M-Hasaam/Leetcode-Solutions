@@ -10,7 +10,41 @@
  * right(right) {}
  * };
  */
+
 class Solution {
+public:
+    int pathSum(TreeNode* root, int targetSum) {
+        unordered_map<long long, int> Prefix;
+        Prefix[0] = 1;
+
+        return rec(root, 0, targetSum, Prefix);
+    }
+
+    int rec(TreeNode* root, long long CurrSum, int target,
+            unordered_map<long long, int>& Prefix) {
+
+        if (!root)
+            return 0;
+
+        CurrSum += root->val;
+
+        int count = 0;
+
+        if (Prefix.count(CurrSum - target))
+            count += Prefix[CurrSum - target];
+
+        Prefix[CurrSum]++;
+
+        count += rec(root->left, CurrSum, target, Prefix);
+        count += rec(root->right, CurrSum, target, Prefix);
+
+        Prefix[CurrSum]--;
+
+        return count;
+    }
+};
+
+class Solution2_18ms {
 public:
     int pathSum(TreeNode* root, int targetSum) {
         if (!root)
