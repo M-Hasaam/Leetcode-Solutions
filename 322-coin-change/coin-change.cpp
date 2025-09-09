@@ -1,6 +1,25 @@
 class Solution {
 public:
     int coinChange(vector<int>& coins, int amount) {
+
+        int INF = INT_MAX - 1;
+
+        vector<int> dp(amount + 1, INF);
+        dp[0] = 0;
+
+        for (const int c : coins) {
+            for (int i = c; i <= amount; i++) {
+                dp[i] = min(dp[i], dp[i - c] + 1);
+            }
+        }
+
+        return dp[amount] == INF ? -1 : dp[amount];
+    }
+};
+
+class Solution_BFS_100ms {
+public:
+    int coinChange(vector<int>& coins, int amount) {
         int size = coins.size();
 
         reverse(coins.begin(), coins.end());
