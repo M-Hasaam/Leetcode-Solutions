@@ -1,4 +1,4 @@
-class Solution {
+class Solution { //14ms
 public:
     int coinChange(vector<int>& coins, int amount) {
 
