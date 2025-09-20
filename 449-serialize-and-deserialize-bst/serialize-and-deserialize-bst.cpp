@@ -7,7 +7,53 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+
 class Codec {
+public:
+    // Serialize using stringstream 
+    string serialize(TreeNode* root) {
+        stringstream ss;
+        buildString(root, ss);
+        return ss.str();
+    }
+
+    TreeNode* deserialize(string data) {
+        vector<string> nodes;
+        string token;
+        stringstream ss(data);
+
+        while (getline(ss, token, ',')) {
+            nodes.push_back(token);
+        }
+
+        int idx = 0;
+        return build(nodes, idx);
+    }
+
+private:
+    void buildString(TreeNode* root, stringstream& ss) {
+        if (!root) {
+            ss << "null,";
+            return;
+        }
+        ss << root->val << ",";
+        buildString(root->left, ss);
+        buildString(root->right, ss);
+    }
+
+    TreeNode* build(vector<string>& nodes, int& idx) {
+        if (idx >= nodes.size() || nodes[idx] == "null") {
+            idx++;
+            return nullptr;
+        }
+        TreeNode* node = new TreeNode(stoi(nodes[idx++]));
+        node->left = build(nodes, idx);
+        node->right = build(nodes, idx);
+        return node;
+    }
+};
+
+class Codec_39ms {
 public:
     // Encodes a tree to a single string.
     string serialize(TreeNode* root) {
