@@ -20,29 +20,29 @@ public:
     // Decodes your encoded data to tree.
     TreeNode* deserialize(string data) {
 
-        vector<string> nodes;
+        queue<string> Q_nodes;
         string token;
         stringstream ss(data);
 
         while (getline(ss, token, ',')) {
-            nodes.push_back(token);
+            Q_nodes.push(token);
         }
 
-        int idx = 0;
-
-        return build(nodes, idx);
+        return build(Q_nodes);
     }
 
 private:
-    TreeNode* build(const vector<string>& nodes, int& idx) {
-        if (nodes[idx] == "null") {
-            idx++;
+    TreeNode* build(queue<string>& Q_nodes) {
+        if (Q_nodes.front() == "null") {
+            Q_nodes.pop();
             return nullptr;
         }
 
-        TreeNode* root = new TreeNode(stoi(nodes[idx++]));
-        root->left = build(nodes, idx);
-        root->right = build(nodes, idx);
+        TreeNode* root = new TreeNode(stoi(Q_nodes.front()));
+        Q_nodes.pop();
+
+        root->left = build(Q_nodes);
+        root->right = build(Q_nodes);
 
         return root;
     }
