@@ -1,4 +1,4 @@
-class Solution {
+class Solution { //349ms
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
 
