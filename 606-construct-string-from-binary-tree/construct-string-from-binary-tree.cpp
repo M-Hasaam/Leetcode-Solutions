@@ -10,18 +10,18 @@
  * right(right) {}
  * };
  */
+
 class Solution {
 public:
     string tree2str(TreeNode* root) {
         if (!root)
             return "";
 
-        return to_string(root->val) +
-               ((root->left && root->right)
-                    ? ("(" + tree2str(root->left) + ")(" +
-                       tree2str(root->right) + ")")
-                : root->left  ? ("(" + tree2str(root->left) + ")")
-                : root->right ? ("()(" + tree2str(root->right) + ")")
-                              : "");
+        string res = to_string(root->val);
+        if (root->left || root->right)
+            res += "(" + tree2str(root->left) + ")";
+        if (root->right)
+            res += "(" + tree2str(root->right) + ")";
+        return res;
     }
 };
