@@ -5,17 +5,14 @@
 class Solution {
 public:
     int rand10() {
-        while (true) {
-            int v1 = rand7();
-            int v2 = rand7();
 
-            int num = (v1 - 1) * 7 + v2; //  1-49 uniform
+        int v1 = rand7();
+        int v2 = rand7();
 
-            if (num <= 40) // accepting only 1-40 uniform
-                return (num - 1) % 10 + 1;
-        }
+        int num = (v1 - 1) * 7 + v2; //  1-49 uniform
 
-        return -1;
+        // accepting only 1-40 uniform
+        return (num > 40 ? rand10() : num % 10 + 1);
     }
 };
 
