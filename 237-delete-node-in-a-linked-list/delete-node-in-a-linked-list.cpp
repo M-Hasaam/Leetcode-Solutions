@@ -6,7 +6,19 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
-class Solution {
+class Solution { // O(1)
+public:
+    void deleteNode(ListNode* node) {
+        ListNode* next = node->next;
+
+        node->val = next->val;
+        node->next = next->next;
+
+        delete next;
+    }
+};
+
+class Solution_2 { // O(n)
 public:
     void deleteNode(ListNode* node) {
 
