@@ -14,11 +14,11 @@ class Solution {
 public:
     bool findTarget(TreeNode* root, int k) {
         unordered_set<int> SET;
-        return rec(root, k, SET);
+        return dfs(root, k, SET);
     }
 
 private:
-    bool rec(TreeNode* node, const int& k, unordered_set<int>& SET) {
+    bool dfs(TreeNode* node, const int& k, unordered_set<int>& SET) {
 
         if (!node)
             return false;
@@ -28,6 +28,6 @@ private:
 
         SET.insert(node->val);
 
-        return rec(node->left, k, SET) || rec(node->right, k, SET);
+        return dfs(node->left, k, SET) || dfs(node->right, k, SET);
     }
 };
