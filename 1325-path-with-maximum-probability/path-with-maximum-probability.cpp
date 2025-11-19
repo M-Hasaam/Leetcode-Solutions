@@ -24,6 +24,9 @@ public:
             auto [P, u] = pq.top();
             pq.pop();
 
+            if (u == end_node)
+                return prob[u];
+
             for (auto [nxt_P, nxt] : graph[u]) {
                 if (prob[nxt] < P * nxt_P) {
                     prob[nxt] = P * nxt_P;
