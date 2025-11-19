@@ -24,6 +24,9 @@ public:
             auto [P, u] = pq.top();
             pq.pop();
 
+            if (P < prob[u])
+                continue;
+
             if (u == end_node)
                 return prob[u];
 
