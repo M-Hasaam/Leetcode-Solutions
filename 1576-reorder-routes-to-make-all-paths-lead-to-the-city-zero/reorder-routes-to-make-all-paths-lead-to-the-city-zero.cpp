@@ -1,6 +1,44 @@
 class Solution {
 public:
     int minReorder(int n, vector<vector<int>>& connections) {
+        vector<vector<int>> out(n), in(n);
+
+        for (auto con : connections) {
+            int u = con[0], v = con[1];
+
+            out[u].push_back(v);
+            in[v].push_back(u);
+        }
+
+        vector<bool> visited(n, false);
+
+        function<int(int)> dfs = [&](int curr) {
+            visited[curr] = true;
+            int count = 0;
+
+            for (int o : out[curr]) {
+                if (!visited[o]) {
+                    count++;
+                    count += dfs(o);
+                }
+            }
+
+            for (int i : in[curr]) {
+                if (!visited[i]) {
+                    count += dfs(i);
+                }
+            }
+
+            return count;
+        };
+
+        return dfs(0);
+    }
+};
+
+class Solution_143ms {
+public:
+    int minReorder(int n, vector<vector<int>>& connections) {
         vector<vector<int>> graph(n);
 
         for (auto con : connections) {
