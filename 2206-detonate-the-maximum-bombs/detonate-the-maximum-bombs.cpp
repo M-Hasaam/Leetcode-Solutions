@@ -1,4 +1,54 @@
 class Solution {
+    bool canDetonate(const vector<int>& a, const vector<int>& b) {
+        long long dx = (long long)a[0] - b[0];
+        long long dy = (long long)a[1] - b[1];
+        long long r = (long long)a[2];
+        return dx * dx + dy * dy <= r * r;
+    }
+
+public:
+    int maximumDetonation(vector<vector<int>>& bombs) {
+        int n = bombs.size();
+        vector<vector<int>> graph(n);
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i != j && canDetonate(bombs[i], bombs[j])) {
+                    graph[i].push_back(j);
+                }
+            }
+        }
+
+        int ans = 0;
+
+        for (int i = 0; i < n; i++) {
+            vector<bool> visited(n, false);
+            stack<int> st;
+            st.push(i);
+            visited[i] = true;
+
+            int cnt = 0;
+            while (!st.empty()) {
+                int cur = st.top();
+                st.pop();
+                cnt++;
+
+                for (int nxt : graph[cur]) {
+                    if (!visited[nxt]) {
+                        visited[nxt] = true;
+                        st.push(nxt);
+                    }
+                }
+            }
+
+            ans = max(ans, cnt);
+        }
+
+        return ans;
+    }
+};
+
+class Solution_DFS {
     bool isPointInCircle(int Px, int Py, int X, int Y,
                          long long unsigned int R) {
         long long unsigned int dx = Px - X;
