@@ -41,10 +41,10 @@ class Solution {
 public:
     vector<vector<int>> buildMatrix(int k, vector<vector<int>>& rowConditions,
                                     vector<vector<int>>& colConditions) {
-        vector<int> R = topoSortDFS(k, rowConditions);
-        vector<int> C = topoSortDFS(k, colConditions);
-        // vector<int> R = topologySort(k, rowConditions);
-        // vector<int> C = topologySort(k, colConditions);
+        // vector<int> R = topoSortDFS(k, rowConditions);
+        // vector<int> C = topoSortDFS(k, colConditions);
+        vector<int> R = topologySort(k, rowConditions);
+        vector<int> C = topologySort(k, colConditions);
 
         if (R.size() != k || C.size() != k)
             return {};
