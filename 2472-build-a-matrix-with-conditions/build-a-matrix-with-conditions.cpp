@@ -3,7 +3,7 @@ class Solution {
         vector<vector<int>> adj(k + 1);
         vector<int> indeg(k + 1, 0);
 
-        for (auto C : Conditions) {
+        for (auto& C : Conditions) {
             adj[C[0]].push_back(C[1]);
             indeg[C[1]]++;
         }
@@ -15,6 +15,7 @@ class Solution {
                 q.push(i);
 
         vector<int> order;
+        order.reserve(k);
 
         while (!q.empty()) {
             int curr = q.front();
@@ -42,7 +43,7 @@ public:
         if (R.size() != k || C.size() != k)
             return {};
 
-        unordered_map<int, int> Rm, Cm;
+        vector<int> Rm(k + 1, 0), Cm(k + 1, 0);
 
         for (int i = 0; i < k; i++) {
             Rm[R[i]] = i;
