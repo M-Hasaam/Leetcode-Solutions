@@ -67,14 +67,14 @@ public:
 private:
     bool dfs(int node, vector<vector<int>>& adj, vector<int>& visited,
              vector<int>& order) {
-        visited[node] = 1; // visiting
+        visited[node] = 1;
         for (int nei : adj[node]) {
             if (visited[nei] == 1)
-                return false; // cycle
+                return false;
             if (visited[nei] == 0 && !dfs(nei, adj, visited, order))
                 return false;
         }
-        visited[node] = 2; // visited
+        visited[node] = 2;
         order.push_back(node);
         return true;
     }
