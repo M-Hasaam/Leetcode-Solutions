@@ -1,4 +1,5 @@
 class Solution {
+
     vector<int> topologySort(int k, vector<vector<int>>& Conditions) {
         vector<vector<int>> adj(k + 1);
         for (int i = 1; i <= k; i++)
@@ -40,8 +41,10 @@ class Solution {
 public:
     vector<vector<int>> buildMatrix(int k, vector<vector<int>>& rowConditions,
                                     vector<vector<int>>& colConditions) {
-        vector<int> R = topologySort(k, rowConditions);
-        vector<int> C = topologySort(k, colConditions);
+        vector<int> R = topoSortDFS(k, rowConditions);
+        vector<int> C = topoSortDFS(k, colConditions);
+        // vector<int> R = topologySort(k, rowConditions);
+        // vector<int> C = topologySort(k, colConditions);
 
         if (R.size() != k || C.size() != k)
             return {};
@@ -59,5 +62,35 @@ public:
             matrix[Rm[num]][Cm[num]] = num;
 
         return matrix;
+    }
+
+private:
+    bool dfs(int node, vector<vector<int>>& adj, vector<int>& visited,
+             vector<int>& order) {
+        visited[node] = 1; // visiting
+        for (int nei : adj[node]) {
+            if (visited[nei] == 1)
+                return false; // cycle
+            if (visited[nei] == 0 && !dfs(nei, adj, visited, order))
+                return false;
+        }
+        visited[node] = 2; // visited
+        order.push_back(node);
+        return true;
+    }
+
+    vector<int> topoSortDFS(int k, vector<vector<int>>& cond) {
+        vector<vector<int>> adj(k + 1);
+        for (auto& c : cond)
+            adj[c[0]].push_back(c[1]);
+
+        vector<int> visited(k + 1, 0), order;
+        order.reserve(k);
+        for (int i = 1; i <= k; i++)
+            if (!visited[i] && !dfs(i, adj, visited, order))
+                return {};
+
+        reverse(order.begin(), order.end());
+        return order;
     }
 };
