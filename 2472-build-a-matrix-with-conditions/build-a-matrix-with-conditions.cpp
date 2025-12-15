@@ -1,6 +1,9 @@
 class Solution {
     vector<int> topologySort(int k, vector<vector<int>>& Conditions) {
         vector<vector<int>> adj(k + 1);
+        for (int i = 1; i <= k; i++)
+            adj[i].reserve(10);
+
         vector<int> indeg(k + 1, 0);
 
         for (auto& C : Conditions) {
