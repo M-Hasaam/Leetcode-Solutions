@@ -3,60 +3,54 @@ public:
     vector<string> watchedVideosByFriends(vector<vector<string>>& watchedVideos,
                                           vector<vector<int>>& friends, int id,
                                           int level) {
-        int n = friends.size();
 
-        queue<int> q;
+        int n = friends.size();
         vector<bool> visited(n, false);
+        queue<int> q;
 
         q.push(id);
         visited[id] = true;
 
-        int k = 0;
+        int currLevel = 0;
 
-        unordered_map<string, int> M;
-
-        while (!q.empty()) {
-
-            int size = q.size();
-
-            for (int i = 0; i < size; i++) {
-
-                int curr = q.front();
+        while (!q.empty() && currLevel < level) {
+            int sz = q.size();
+            while (sz--) {
+                int u = q.front();
                 q.pop();
-
-                if (k == level) {
-                    for (string V : watchedVideos[curr]) {
-                        M[V]++;
+                for (int v : friends[u]) {
+                    if (!visited[v]) {
+                        visited[v] = true;
+                        q.push(v);
                     }
-                    continue;
-                }
-
-                for (int f : friends[curr]) {
-                    if (visited[f])
-                        continue;
-                    visited[f] = true;
-                    q.push(f);
                 }
             }
-
-            k++;
+            currLevel++;
         }
 
-        vector<pair<string, int>> vids;
-        for (auto& p : M) {
-            vids.push_back(p);
+        unordered_map<string, int> freq;
+        while (!q.empty()) {
+            int u = q.front();
+            q.pop();
+            for (const string& v : watchedVideos[u]) {
+                freq[v]++;
+            }
         }
-
-        sort(vids.begin(), vids.end(), [](auto& a, auto& b) {
-            if (a.second != b.second)
-                return a.second < b.second;
-            return a.first < b.first;
-        });
 
         vector<string> ans;
-        for (auto& p : vids) {
+        ans.reserve(freq.size());
+
+        for (auto& p : freq) {
             ans.push_back(p.first);
         }
+
+        sort(ans.begin(), ans.end(), [&](const string& a, const string& b) {
+            int fa = freq[a], fb = freq[b];
+            if (fa != fb) {
+                return fa < fb;
+            }
+            return a < b;
+        });
 
         return ans;
     }
