@@ -38,7 +38,7 @@ public:
         DSU A(n), B(n);
         int used = 0;
 
-        for (auto e : edges) {
+        for (const auto& e : edges) {
             if (e[0] == 3) {
                 int u = e[1], v = e[2];
                 bool a = A.unite(u, v);
@@ -47,7 +47,7 @@ public:
                     used++;
             }
         }
-        for (auto e : edges) {
+        for (const auto& e : edges) {
             if (e[0] != 3) {
                 int u = e[1], v = e[2];
 
