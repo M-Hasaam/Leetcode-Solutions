@@ -21,7 +21,7 @@ class Solution {
             if (a == b)
                 return false;
 
-            if (b > a)
+            if (size[b] > size[a])
                 swap(a, b);
 
             parent[b] = a;
@@ -41,7 +41,9 @@ public:
         for (auto e : edges) {
             if (e[0] == 3) {
                 int u = e[1], v = e[2];
-                if (A.unite(u, v) && B.unite(u, v))
+                bool a = A.unite(u, v);
+                bool b = B.unite(u, v);
+                if (a || b)
                     used++;
             }
         }
@@ -85,7 +87,7 @@ public:
             if (pa == pb)
                 return false;
 
-            if (pa < pb)
+            if (size[pa] < size[pb])
                 swap(pa, pb);
 
             parent[type][pb - 1] = pa;
