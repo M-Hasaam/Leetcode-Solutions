@@ -1,44 +1,56 @@
 class Solution {
-public:
-    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
-        using P = pair<int, int>;
-        vector<vector<P>> graph(n);
-
-        for (const auto& flight : flights) {
-            int from = flight[0], to = flight[1], cost = flight[2];
-            graph[from].emplace_back(to, cost);
+    struct Node {
+        int cost, u, k;
+        Node(int a, int b, int c) {
+            cost = a;
+            u = b;
+            k = c;
         }
 
+        bool operator<(const Node& O) const { return cost > O.cost; }
+    };
+
+public:
+    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst,
+                          int k) {
+        using P = pair<int, int>;
         using T = tuple<int, int, int>;
-        priority_queue<T, vector<T>, greater<>> pq;
-        pq.emplace(0, src, 0);
 
-        vector<int> min_cost(n, INT_MAX);
-        min_cost[src] = 0;
+        vector<vector<P>> graph(n);
+        for (auto F : flights) {
+            graph[F[0]].push_back({F[1], F[2]});
+        }
 
-        vector<int> stops(n, INT_MAX);
-        stops[src] = 0;
+        // priority_queue<T, vector<T>, greater<>> pq;
+        priority_queue<Node> pq;
+        vector<int> Cost(n, INT_MAX);
+        vector<int> Stops(n, INT_MAX);
+
+        pq.push({0, src, 0});
+        Cost[src] = 0;
+        Stops[src] = 0;
 
         while (!pq.empty()) {
-            auto [curr_cost, curr_node, curr_k] = pq.top();
+            Node curr = pq.top();
             pq.pop();
 
-            if (curr_node == dst) {
-                return curr_cost;
-            }
+            cout << " U= " << curr.u << " Cost= " << curr.cost
+                 << " Stops= " << curr.k << endl;
 
-            if (curr_k > k) {
-                continue;
-            }
+            if (curr.u == dst)
+                return curr.cost;
 
-            for (const auto& [next_node, next_cost] : graph[curr_node]) {
-                int new_cost = curr_cost + next_cost;
-                int new_stops = curr_k + 1;
+            for (auto [v, C] : graph[curr.u]) {
+                int n_cost = curr.cost + C;
+                int n_k = curr.k + 1;
 
-                if (new_cost < min_cost[next_node] || new_stops < stops[next_node]) {
-                    min_cost[next_node] = new_cost;
-                    stops[next_node] = new_stops;
-                    pq.emplace(new_cost, next_node, new_stops);
+                if (n_k > k + 1)
+                    continue;
+
+                if (n_cost < Cost[v] || n_k < Stops[v]) {
+                    Cost[v] = n_cost;
+                    Stops[v] = n_k;
+                    pq.push({n_cost, v, n_k});
                 }
             }
         }
