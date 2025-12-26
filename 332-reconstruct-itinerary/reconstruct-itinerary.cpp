@@ -6,6 +6,7 @@ class Solution {
 
     void dfs(string airport) {
 
+
         while (!graph[airport].empty()) {
 
             string next_airport = graph[airport].top();
@@ -13,8 +14,8 @@ class Solution {
 
             dfs(next_airport);
         }
-
         answer.push_back(airport);
+
     }
 
 public:
