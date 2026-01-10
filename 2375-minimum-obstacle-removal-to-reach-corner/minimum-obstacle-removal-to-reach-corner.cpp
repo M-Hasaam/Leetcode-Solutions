@@ -1,4 +1,38 @@
 class Solution {
+public:
+    int minimumObstacles(vector<vector<int>>& grid) {
+        int m = grid.size(), n = grid[0].size();
+        deque<pair<int,int>> dq;
+        vector<vector<int>> dist(m, vector<int>(n, INT_MAX));
+
+        dq.push_front({0, 0});
+        dist[0][0] = 0;
+
+        int dirs[4][2] = {{1,0},{-1,0},{0,1},{0,-1}};
+
+        while (!dq.empty()) {
+            auto [i, j] = dq.front();
+            dq.pop_front();
+
+            for (auto& d : dirs) {
+                int ni = i + d[0], nj = j + d[1];
+                if (ni < 0 || ni >= m || nj < 0 || nj >= n) continue;
+
+                int w = grid[ni][nj];
+                if (dist[i][j] + w < dist[ni][nj]) {
+                    dist[ni][nj] = dist[i][j] + w;
+                    if (w == 0)
+                        dq.push_front({ni, nj});
+                    else
+                        dq.push_back({ni, nj});
+                }
+            }
+        }
+        return dist[m-1][n-1];
+    }
+};
+
+class Solution_Dijkstra {
     struct Node {
         int d, i, j, pi, pj;
 
